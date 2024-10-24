@@ -57,12 +57,7 @@ public class Student{
         }
 
         public void display(){
-            System.out.println("""
-                                Name:   %s
-                                USN:    %s
-                                Marks:  %s
-                                Credits:%s
-                                SGPA:   %.2f""".formatted(name, USN, makeString(marks), makeString(credits), SGPA));
+            System.out.println(String.format("Name: %s\nUSN: %s\nMarks: %s\nCredits: %s\nSGPA: %.2f",name, USN, makeString(marks), makeString(credits), SGPA));
         }
 }
 
