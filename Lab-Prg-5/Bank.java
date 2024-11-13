@@ -11,34 +11,29 @@ public class Bank
 
 		int sIndex=0, cIndex=0;
 
-		System.out.println("1. Savings\n2. Current\n3. Deposit\n4. Withdraw\n5. Interest\n0. Exit\n");
+		System.out.println("1. Savings\n2. Current\n3. Deposit\n4. Withdraw\n5. Interest\n6. Display\n7. Cheque\n0. Exit");
 		int choice;
 
 		do
 		{
-			System.out.println("Enter choice:");
+			System.out.print("\nEnter choice:");
 			choice = sc.nextInt();
 
 			switch(choice)
 			{
-				case 1 -> 
-				{
-					sa[sIndex++]=new SavingsAccount();
-				}
-				case 2 -> 
-				{
-					ca[cIndex++]=new CurrentAccount();
-				}
-
-				case 3 ->
-				{
-					System.out.println("Enter Account number:");
+				case 1 :sa[sIndex]=new SavingsAccount();
+					sa[sIndex++].getData();
+					break;
+				case 2 :ca[cIndex]=new CurrentAccount();
+					ca[cIndex++].getData();
+					break;
+				case 3 :System.out.print("Enter Account number:");
 					String accno = sc.next().strip().toUpperCase();
 					
-					if(accno.charAt(0)=='S')
+					if(accno.charAt(1)=='S')
 					{
 
-						for(int i=0;i<sIndex;i++)
+						for(int i=0;i<=sIndex;i++)
 						{
 							if(sa[i].getAccountNumber().equals(accno))
 							{
@@ -48,9 +43,9 @@ public class Bank
 							}
 						}
 					}
-					else if(accno.charAt(0)=='C')
+					else if(accno.charAt(1)=='C')
 					{
-						for(int i=0;i<cIndex;i++)
+						for(int i=0;i<=cIndex;i++)
 						{
 							if(ca[i].getAccountNumber().equals(accno))
 							{
@@ -64,18 +59,16 @@ public class Bank
 					{
 						System.out.println("Invalid account no.");
 					}
-				}
-				case 4 ->
-				{
-					System.out.println("Enter Account number:");
-					String accno = sc.next().strip().toUpperCase();
+					break;
+				case 4 :System.out.print("Enter Account number:");
+					String accnumber = sc.next().strip().toUpperCase();
 
-					if(accno.charAt(0)=='S')
+					if(accnumber.charAt(1)=='S')
 					{
 
-						for(int i=0;i<sIndex;i++)
+						for(int i=0;i<=sIndex;i++)
 						{
-							if(sa[i].getAccountNumber().equals(accno))
+							if(sa[i].getAccountNumber().equals(accnumber))
 							{
 								System.out.print("Enter amount:");
 								double amount = sc.nextDouble();
@@ -83,11 +76,11 @@ public class Bank
 							}
 						}
 					}
-					else if(accno.charAt(0)=='C')
+					else if(accnumber.charAt(1)=='C')
 					{
-						for(int i=0;i<cIndex;i++)
+						for(int i=0;i<=cIndex;i++)
 						{
-							if(ca[i].getAccountNumber().equals(accno))
+							if(ca[i].getAccountNumber().equals(accnumber))
 							{
 								System.out.print("Enter amount:");
 								double amount = sc.nextDouble();
@@ -99,16 +92,48 @@ public class Bank
 					{
 						System.out.println("Invalid account no.");
 					}
-				}
-
-				case 5 ->
-				{
-					for(SavingsAccount s: sa)
+					break;
+				case 5 :for(SavingsAccount s: sa)
 					{
-						s.addInterest();
+						if(s!=null)
+						{
+							s.addInterest();
+						}
 					}
-
-				}
+					System.out.println("Added Interest");
+					break;
+				case 6:
+					// Display Savings Accounts
+					for (SavingsAccount a : sa) {
+						if (a != null) {  // Check if the account is initialized
+							a.display();
+        					}
+    					}
+					// Display Current Accounts
+					for (CurrentAccount b : ca) {
+						if (b != null) {  // Check if the account is initialized
+						        b.display();
+        					}
+    					}
+    					break;
+				case 7:	System.out.print("Enter Account No:");
+					String accNo = sc.next().strip().toUpperCase();
+					if(accNo.charAt(1)=='C')
+					{
+						System.out.print("Enter Cheque No:");
+						String checkNumber = sc.next().strip().toUpperCase();
+						for(CurrentAccount c: ca)
+						{
+							if(c!=null && c.getAccountNumber().equals(accNo))
+								c.addCheque(checkNumber);
+						}
+					}
+					else
+					{
+						System.out.println("Invalid Account");
+					}
+					break;
+				default:System.out.println("Invalid Input");
 
 			}
 			sc.nextLine();

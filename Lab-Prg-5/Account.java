@@ -2,8 +2,7 @@ import java.util.Scanner;
 
 public class Account
 {
-	static long count=0;
-
+	private static long accountCounter=0;
 	protected String customerName;
 	protected String accountNumber;
 	protected String accountType;
@@ -12,22 +11,18 @@ public class Account
 	public Account(){
 	}
 	
-	protected void getData(Scanner sc)
+	public void getData(Scanner sc, String accountType, long accountCount)
 	{
 		
 		System.out.print("Enter customer name:");
 		customerName = sc.nextLine();
 		
-		accountNumber = (++count)+"";
+		accountNumber = (++accountCounter)+""+accountType+""+accountCount;
+		System.out.print("Enter initial Balance:");
+		balance = sc.nextDouble();
 		display();
 	}
 
-	protected void askBalance(Scanner sc){
-		System.out.print("Enter initial Balance:");
-		balance = sc.nextDouble();
-
-	}
-	
 	public void display()
 	{
 		System.out.println(
@@ -69,18 +64,14 @@ class SavingsAccount extends Account
 {
 	
 	static public double interestRate=0.05;
+	static long count=0;
 	SavingsAccount(){
-		this.getData();
 	}
 
-	private void getData(){
+	public void getData(){
 		Scanner sc = new Scanner(System.in);
-
-		super.getData(sc);
 		accountType = "S";
-		accountNumber = accountType+accountNumber;
-
-		super.askBalance(sc);
+		super.getData(sc, accountType,++count);
 	}
 
 	public void addInterest(){
@@ -91,20 +82,16 @@ class SavingsAccount extends Account
 class CurrentAccount extends Account
 {
 	static long minimumBalance = 5000;
-	
+	static long count=0;
 	String chequeBook = "";
 	CurrentAccount(){
-		getData();
 	}
 
-	private void getData(){
+	public void getData(){
 		Scanner sc = new Scanner(System.in);
 
-		super.getData(sc);
 		accountType = "C";
-		accountNumber = accountType + accountNumber + (++count);
-
-		super.askBalance(sc);
+		super.getData(sc,accountType,++count);
 	}
 
 	public void withdrawal(double amount){
@@ -121,8 +108,8 @@ class CurrentAccount extends Account
 		super.withdrawal(amount);
 	}
 
-	public void AddCheque(String s)
+	public void addCheque(String s)
 	{
-		chequeBook = chequeBook+s;
+		chequeBook = chequeBook+s+"\n";
 	}
 }
