@@ -2,11 +2,20 @@ package CIE;
 
 import java.util.Scanner;
 
-public class Internals
+public class Internals extends Student
 {
 	private int[] marks;
 
-	public Internals(){getData();}
+	private Internals(String usn, String name, int semester, int marks[]){
+		super(usn,name,semester);
+		this.marks=marks;
+	}
+
+	private Internals(Student s, int[] marks)
+	{
+		super(s);
+		this.marks=marks;
+	}
 
 	/**
 	public Internals(int[] marks)
@@ -15,16 +24,36 @@ public class Internals
 	}
 	**/
 
-	public void getData()
+	public static Internals getNewInstanceOf()
 	{
 		Scanner sc = new Scanner(System.in);
-		marks = new int[5];
-		System.out.println("Enter array of marks");
-		for(int i=0;i<marks.length;i++)
+		System.out.println("Enter student details and array of CIE marks");
+		String usn = sc.next().strip().toUpperCase();
+		String name = sc.next();
+		int semester = sc.nextInt();
+		int[] marks = new int[5];
+		for(int i=0;i<marks.length;i++){
 			marks[i]=sc.nextInt();
+		}
+		sc.nextLine();
 		sc.close();
+
+		return new Internals(usn,name,semester,marks);
 	}
 
-	public int[] getMarks(){return marks;}
+	public static Internals getNewInstanceOf(Student s)
+	{
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter CIE marks details:");
+		int marks[] = new int[5];
+		for(int i=0;i<marks.length;i++){
+			marks[i]=sc.nextInt();
+		}
+		sc.nextLine();
+		sc.close();
+		return new Internals(s,marks);
+	}
+
+	public int getMarks(int i){return marks[i];}
 
 }
