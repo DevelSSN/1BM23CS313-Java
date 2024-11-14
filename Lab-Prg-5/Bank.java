@@ -33,7 +33,7 @@ public class Bank
 					if(accno.charAt(1)=='S')
 					{
 
-						for(int i=0;i<=sIndex;i++)
+						for(int i=0;i<sIndex;i++)
 						{
 							if(sa[i].getAccountNumber().equals(accno))
 							{
@@ -45,7 +45,7 @@ public class Bank
 					}
 					else if(accno.charAt(1)=='C')
 					{
-						for(int i=0;i<=cIndex;i++)
+						for(int i=0;i<cIndex;i++)
 						{
 							if(ca[i].getAccountNumber().equals(accno))
 							{
@@ -66,7 +66,7 @@ public class Bank
 					if(accnumber.charAt(1)=='S')
 					{
 
-						for(int i=0;i<=sIndex;i++)
+						for(int i=0;i<sIndex;i++)
 						{
 							if(sa[i].getAccountNumber().equals(accnumber))
 							{
@@ -78,7 +78,7 @@ public class Bank
 					}
 					else if(accnumber.charAt(1)=='C')
 					{
-						for(int i=0;i<=cIndex;i++)
+						for(int i=0;i<cIndex;i++)
 						{
 							if(ca[i].getAccountNumber().equals(accnumber))
 							{
@@ -127,12 +127,14 @@ public class Bank
 							if(c!=null && c.getAccountNumber().equals(accNo))
 								c.addCheque(checkNumber);
 						}
+						System.out.println("Added Cheque");
 					}
 					else
 					{
 						System.out.println("Invalid Account");
 					}
 					break;
+				case 0: break;
 				default:System.out.println("Invalid Input");
 
 			}
