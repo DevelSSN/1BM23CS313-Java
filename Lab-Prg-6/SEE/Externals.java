@@ -34,7 +34,6 @@ public class Externals extends Student
 	                marks[i] = sc.nextInt();
 	        }
 		sc.nextLine();
-		sc.close();
 	        return new Externals(usn, name, semester, marks);
 	}
 	
@@ -46,7 +45,6 @@ public class Externals extends Student
         	        marks[i] = sc.nextInt();
 	        }
 		sc.nextLine();
-		sc.close();
 	        return new Externals(s, marks);
 	}
         public int getMarks(int i){return marks[i];}

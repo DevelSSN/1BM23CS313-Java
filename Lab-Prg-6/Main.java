@@ -11,13 +11,12 @@ class Main
 		int n = sc.nextInt();
 		Internals[] ai = new Internals[n];
 		Externals[] ae = new Externals[n];
-
+		int[] result=new int[5];
 		
-		for(int i=0;i<n;i++)
-		{
-			ai[i]=Internals.getNewInstanceOf();
-			ae[i]=Externals.getNewInstanceOf((Student) ai[i]);
-		}
+		for (int i = 0; i < n; i++) {
+        		ai[i] = Internals.getNewInstanceOf(); 
+			ae[i] = Externals.getNewInstanceOf(ai[i]);
+        	}
 
 		System.out.println("Details:");
 
@@ -25,16 +24,24 @@ class Main
 		{
 			System.out.println("USN:"+ai[i].getUSN()
 					+"\tName:"+ai[i].getName()
-					+"\tSemester"+ai[i].getSemester());
+					+"\tSemester:"+ai[i].getSemester());
 			System.out.print("Internals:");
-			for(int j=0;i<5;j++)
+			for(int j=0;j<5;j++){
 				System.out.print(ai[i].getMarks(j)+"\t");
+				result[j]=ai[i].getMarks(j);
+			}
 			System.out.println();
 			System.out.print("Externals:");
-			for(int j=0;i<5;j++)
+			for(int j=0;j<5;j++){
 				System.out.print(ae[i].getMarks(j)+"\t");
+				result[j]+=ae[i].getMarks(j)/2.0;
+			}
 			System.out.println();
-
+			System.out.print("Results:  ");
+			for(int j=0;j<5;j++)
+				System.out.print(result[j]+"\t");
+			System.out.println();
 		}
+		sc.close();
 	}
 }

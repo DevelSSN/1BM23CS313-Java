@@ -36,8 +36,6 @@ public class Internals extends Student
 			marks[i]=sc.nextInt();
 		}
 		sc.nextLine();
-		sc.close();
-
 		return new Internals(usn,name,semester,marks);
 	}
 
@@ -50,7 +48,6 @@ public class Internals extends Student
 			marks[i]=sc.nextInt();
 		}
 		sc.nextLine();
-		sc.close();
 		return new Internals(s,marks);
 	}
 
