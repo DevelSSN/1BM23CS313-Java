@@ -7,20 +7,23 @@ class Main
 	public static void main(String args[])
 	{
 		Scanner sc = new Scanner(System.in);
-		try{
 			System.out.print("Enter the number of Students:");
 			int n = sc.nextInt();
 			Internals[] ai = new Internals[n];
 			Externals[] ae = new Externals[n];
 			int[] result=new int[5];
 			for (int i = 0; i < n; i++) {
-				ai[i] = Internals.getNewInstanceOf(); 
-				ae[i] = Externals.getNewInstanceOf(ai[i]);
+				try{
+					ai[i] = Internals.getNewInstanceOf(); 
+					ae[i] = Externals.getNewInstanceOf(ai[i]);
+				}
+				catch(Exception e){System.err.println("Error: "+e.getMessage()); continue;}
 			}
 			System.out.println("Details:");
 
 			for(int i=0;i<n;i++)
-			{
+			{	
+				if(ai[i] == null || ae[i] == null) continue;
 				System.out.println("USN:"+ai[i].getUSN()
 						+"\tName:"+ai[i].getName()
 						+"\tSemester:"+ai[i].getSemester());
@@ -41,8 +44,5 @@ class Main
 					System.out.print(result[j]+"\t");
 				System.out.println();
 			}
-        	}
-		catch(Exception e){System.err.println("Error: "+e.getMessage());}
-		finally{sc.close();}
-	}
+       	}
 }
