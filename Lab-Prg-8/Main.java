@@ -29,7 +29,7 @@ public class Main
 	public static void main(String[] args)
 	{
 		Newthread t1 = new Newthread("BMS College of Engineering",10000);
-		Newthread t2 = new Newthread("CSE",5000);
+		Newthread t2 = new Newthread("CSE",2000);
 
 		try
 		{
